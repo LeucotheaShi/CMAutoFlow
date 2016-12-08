@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.utility"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/json.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/logback-access-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/logback-classic-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/logback-core-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/slf4j-simple-1.7.2.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-amqp-1.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-aop-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-beans-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-context-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-context-support-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-core-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-expression-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-jdbc-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-orm-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-oxm-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-security-core-3.1.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-security-crypto-3.1.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-test-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-tx-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-web-4.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/cm-lib/libs/spring-webmvc-4.0.3.RELEASE.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/cm-commons"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

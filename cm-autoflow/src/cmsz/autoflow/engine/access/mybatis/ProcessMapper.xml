@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmsz.autoflow.engine.access.mybatis.ProcessMapper">
+
+	<sql id="processColumnList">
+		ID, NAME, STATUS, CONTENT, CREATETIME, UPDATETIME
+	</sql>
+
+
+
+	<select id="findProcessById" parameterType="String" resultType="Process">
+		SELECT
+		<include refid="processColumnList"></include>
+		FROM AF_PROCESS WHERE id=#{ID}
+	</select>
+
+
+	<insert id="insertProcess" parameterType="Process">
+		INSERT into AF_PROCESS (
+		<include refid="processColumnList"></include>
+		) values (#{id}, #{name}, #{status},#{content}, #{createTime},
+		#{updateTime} )
+	</insert>
+	
+	<delete id="deleteProcessById" parameterType="String">
+		DELETE FROM
+		AF_PROCESS WHERE id= #{id}
+	</delete>
+	
+</mapper>

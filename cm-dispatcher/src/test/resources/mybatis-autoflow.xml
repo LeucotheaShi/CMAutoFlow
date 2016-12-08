@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration    
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"    
+    "mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="Process" type="cmsz.autoflow.engine.entity.Process" />
+		<typeAlias alias="Flow" type="cmsz.autoflow.engine.entity.Flow"/>
+		<typeAlias alias="Task" type="cmsz.autoflow.engine.entity.Task"/>
+		<typeAlias alias="Schedule" type="cmsz.autoflow.engine.entity.Schedule"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="cmsz/autoflow/engine/access/mybatis/ProcessMapper.xml" />
+		<mapper resource="cmsz/autoflow/engine/access/mybatis/FlowMapper.xml" />
+		<mapper resource="cmsz/autoflow/engine/access/mybatis/TaskMapper.xml" />
+		<mapper resource="cmsz/autoflow/engine/access/mybatis/ScheduleMapper.xml" />
+	</mappers>
+	
+</configuration>

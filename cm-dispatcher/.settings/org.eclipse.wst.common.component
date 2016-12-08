@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="cm-dispatcher">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+        <dependent-module archiveName="cmup-frame.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cmup-frame/cmup-frame">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cmup-commons.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cmup-commons/cmup-commons">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cmup-autoflow.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cmup-autoflow/cmup-autoflow">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/cm-dispatcher/build/classes"/>
+        <property name="context-root" value="cm-dispatcher"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cmsz.autoflow.engine.access.mybatis.FlowMapper">
+
+
+	<!-- 列出flow表的所有列 -->
+	<sql id="flowColumnList">
+
+		ID, NAME, PROCESSID, STATUS, VARIABLES, CREATETIME,
+		UPDATETIME,
+		FINISHTIME
+
+	</sql>
+
+	<insert id="insertFlow" parameterType="Flow">
+		INSERT into AF_FLOW (
+		<include refid="flowColumnList"></include>
+		)
+		values
+		(#{id}, #{name},#{processId},
+		#{status},#{variables},#{createTime}, #{updateTime} , #{finishTime} )
+	</insert>
+
+
+	<select id="selectFlowById" parameterType="String" resultType="Flow">
+		SELECT
+		<include refid="flowColumnList"></include>
+		FROM AF_FLOW WHERE id=#{flowId}
+	</select>
+
+	<update id="updateFlowStatus" parameterType="Flow">
+		UPDATE AF_FLOW
+
+		<set>
+			<if test="status != null">
+				status=#{status}
+			</if>
+			<if test="updateTime != null">
+				,updateTime=#{updateTime}
+			</if>
+			<if test="finishTime != null">
+				, finishTime=#{finishTime}
+			</if>
+		</set>
+
+		WHERE id = #{id}
+	</update>
+
+
+
+	<select id="getFlowSelective" parameterType="Map" resultType="Flow">
+		SELECT
+		<include refid="flowColumnList"></include>
+		FROM AF_FLOW
+		<where>
+			<if test="id !=null">
+				and id=#{id}
+			</if>
+			<if test="name !=null">
+				and name=#{name}
+			</if>
+			<if test="processId !=null">
+				and processId=#{processId}
+			</if>
+			<if test="processName !=null">
+				and processName=#{processName}
+			</if>
+			<if test="status !=null">
+				and status=#{status}
+			</if>
+			<if test="variables !=null">
+				and variables=#{variables}
+			</if>
+			<if test="settleDate !=null">
+				and settleDate=#{settleDate}
+			</if>
+			<if test="busiLine !=null">
+				and busiLine=#{busiLine}
+			</if>
+			<if test="province !=null">
+				and province=#{province}
+			</if>
+		</where>
+	</select>
+
+</mapper>
