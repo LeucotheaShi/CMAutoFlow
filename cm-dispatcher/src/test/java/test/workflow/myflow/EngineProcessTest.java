@@ -8,13 +8,18 @@ package test.workflow.myflow;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cmsz.autoflow.engine.access.DBAccess;
 import cmsz.autoflow.engine.access.mybatis.MyBatisAccess;
+import cmsz.autoflow.engine.core.AutoEngine;
 import cmsz.autoflow.engine.entity.Flow;
+import cmsz.autoflow.engine.entity.Process;
 import cmsz.autoflow.engine.helper.DateHelper;
+import cmsz.autoflow.engine.model.ProcessModel;
 
 /**
  * @ClassName:test.workflow.myflow.EngineProcessTest
@@ -27,6 +32,10 @@ import cmsz.autoflow.engine.helper.DateHelper;
 public class EngineProcessTest {
 
 	DBAccess myBatisAccess = new MyBatisAccess();
+
+	@Autowired
+	@Qualifier("engine")
+	AutoEngine engine;
 
 	/**
 	 * 
@@ -89,6 +98,17 @@ public class EngineProcessTest {
 		System.out.println(myFlow.toString());
 
 	}
+
+	@Test
+	public void testProcessQuary() {
+
+		Process process = myBatisAccess.getProcess("Proc_Develop_Test_Pre");
+		ProcessModel processModel = process.getModel();
+
+		System.out.println("\n\n\n**********************");
+		System.out.println(process.toString());
+
+	}// testProcessQuary
 
 	/**
 	 * @Title: main
