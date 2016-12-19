@@ -218,14 +218,14 @@ public class MyBatisAccess implements DBAccess {
 	}
 
 	@Override
-	public List<Flow> getFlow(String flowName, String settleDate) {
+	public List<Flow> getFlow(String flowName, String createTime) {
 		logger.debug("Get flows by flowName and settleDate");
 		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
 		try {
 			FlowMapper flowMapper = sqlSession.getMapper(FlowMapper.class);
 			Map<String, Object> paraMap = new HashMap<String, Object>();
 			paraMap.put("name", flowName);
-			paraMap.put("settleDate", settleDate);
+			paraMap.put("createTime", createTime);
 			List<Flow> list = flowMapper.getFlowSelective(paraMap);
 			sqlSession.commit();
 			return list;

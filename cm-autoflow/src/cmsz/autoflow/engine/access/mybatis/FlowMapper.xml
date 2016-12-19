@@ -64,24 +64,16 @@
 			<if test="processId !=null">
 				and processId=#{processId}
 			</if>
-			<if test="processName !=null">
-				and processName=#{processName}
-			</if>
 			<if test="status !=null">
 				and status=#{status}
 			</if>
 			<if test="variables !=null">
 				and variables=#{variables}
 			</if>
-			<if test="settleDate !=null">
-				and settleDate=#{settleDate}
+			<if test="createTime !=null">
+				and createTime like #{createTime}
 			</if>
-			<if test="busiLine !=null">
-				and busiLine=#{busiLine}
-			</if>
-			<if test="province !=null">
-				and province=#{province}
-			</if>
+			
 		</where>
 	</select>
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/cm-commons"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/cm-frame"/>
 	<classpathentry kind="lib" path="/cm-lib/libs/aopalliance-1.0.jar"/>
@@ -92,5 +91,10 @@
 	<classpathentry kind="lib" path="/cm-lib/libs/xstream-1.4.4.jar"/>
 	<classpathentry kind="lib" path="/cm-lib/libs/zkclient-0.1.jar"/>
 	<classpathentry kind="lib" path="/cm-lib/libs/zookeeper-3.4.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

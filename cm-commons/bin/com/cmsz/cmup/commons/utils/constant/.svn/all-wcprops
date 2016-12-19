@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/project/!svn/ver/15928/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant
+END
+ProvinceConstant.java
+K 25
+svn:wc:ra_dav:version-url
+V 185
+/svn/project/!svn/ver/7761/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant/ProvinceConstant.java
+END
+ChannelConstant.java
+K 25
+svn:wc:ra_dav:version-url
+V 184
+/svn/project/!svn/ver/7761/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant/ChannelConstant.java
+END
+ReturnCodeConstant.java
+K 25
+svn:wc:ra_dav:version-url
+V 188
+/svn/project/!svn/ver/12434/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant/ReturnCodeConstant.java
+END
+AccountCheckConstant.java
+K 25
+svn:wc:ra_dav:version-url
+V 190
+/svn/project/!svn/ver/15971/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant/AccountCheckConstant.java
+END
+BizCodeConstant.java
+K 25
+svn:wc:ra_dav:version-url
+V 184
+/svn/project/!svn/ver/7761/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant/BizCodeConstant.java
+END
+ExcConstant.java
+K 25
+svn:wc:ra_dav:version-url
+V 180
+/svn/project/!svn/ver/7761/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant/ExcConstant.java
+END
+BusinessLineMapConstant.java
+K 25
+svn:wc:ra_dav:version-url
+V 193
+/svn/project/!svn/ver/15782/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant/BusinessLineMapConstant.java
+END
+WorkFlowKeyConstant.java
+K 25
+svn:wc:ra_dav:version-url
+V 188
+/svn/project/!svn/ver/8959/%E8%B5%84%E9%87%91%E9%9B%86%E4%B8%AD%E6%B8%85%E5%88%86/trunk/code/cmup/cmup-commons/src/common/java/com/cmsz/cmup/commons/utils/constant/WorkFlowKeyConstant.java
+END

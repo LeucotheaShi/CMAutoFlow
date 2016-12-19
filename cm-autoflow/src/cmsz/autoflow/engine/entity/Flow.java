@@ -1,17 +1,22 @@
 /**
  * @Title: Flow.java
  * @Description:
- * @Date:2016Äê12ÔÂ6ÈÕ ÉÏÎç10:51:25
+ * @Date:2016ï¿½ï¿½12ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:51:25
  * @Author:LeucotheaShi
  */
 package cmsz.autoflow.engine.entity;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Map;
+
+import cmsz.autoflow.engine.helper.JsonHelper;
+import cmsz.autoflow.engine.helper.StringHelper;
 
 /**
  * @ClassName:cmsz.autoflow.engine.entity.Flow
- * @Description: Á÷³ÌÊµÀýµÄÊµÌåÀà
- * @Date: 2016Äê12ÔÂ6ÈÕ
+ * @Description: ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
+ * @Date: 2016ï¿½ï¿½12ï¿½ï¿½6ï¿½ï¿½
  * @Author: LeucotheaShi
  */
 public class Flow implements Serializable {
@@ -19,12 +24,11 @@ public class Flow implements Serializable {
 	/**
 	 * @Title: Flow.java
 	 * @Description:
-	 * @Date:2016Äê12ÔÂ6ÈÕ ÉÏÎç10:51:34
+	 * @Date:2016ï¿½ï¿½12ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:51:34
 	 * @Author:LeucotheaShi
 	 */
 	private static final long serialVersionUID = 3084464106695967255L;
 
-	
 	private String id;
 	private String name;
 	private String processId;
@@ -33,50 +37,62 @@ public class Flow implements Serializable {
 	private String createTime;
 	private String updateTime;
 	private String finishTime;
+
 	/**
 	 * @return the id
 	 */
 	public String getId() {
 		return id;
 	}
+
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
+
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	/**
 	 * @return the status
 	 */
 	public String getStatus() {
 		return status;
 	}
+
 	/**
-	 * @param status the status to set
+	 * @param status
+	 *            the status to set
 	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	/**
 	 * @return the processId
 	 */
 	public String getProcessId() {
 		return processId;
 	}
+
 	/**
-	 * @param processId the processId to set
+	 * @param processId
+	 *            the processId to set
 	 */
 	public void setProcessId(String processId) {
 		this.processId = processId;
@@ -88,53 +104,65 @@ public class Flow implements Serializable {
 	public String getVariables() {
 		return variables;
 	}
+
 	/**
-	 * @param variables the variables to set
+	 * @param variables
+	 *            the variables to set
 	 */
 	public void setVariables(String variables) {
 		this.variables = variables;
 	}
+
 	/**
 	 * @return the createTime
 	 */
 	public String getCreateTime() {
 		return createTime;
 	}
+
 	/**
-	 * @param createTime the createTime to set
+	 * @param createTime
+	 *            the createTime to set
 	 */
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+
 	/**
 	 * @return the updateTime
 	 */
 	public String getUpdateTime() {
 		return updateTime;
 	}
+
 	/**
-	 * @param updateTime the updateTime to set
+	 * @param updateTime
+	 *            the updateTime to set
 	 */
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
+
 	/**
 	 * @return the finishTime
 	 */
 	public String getFinishTime() {
 		return finishTime;
 	}
+
 	/**
-	 * @param finishTime the finishTime to set
+	 * @param finishTime
+	 *            the finishTime to set
 	 */
 	public void setFinishTime(String finishTime) {
 		this.finishTime = finishTime;
 	}
+
 	/**
 	 * @Title: toString
 	 * @Description:
 	 * @return
-	 * @Date:2016Äê12ÔÂ6ÈÕ ÏÂÎç2:26:00
+	 * @Date:2016ï¿½ï¿½12ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2:26:00
 	 * @Author:LeucotheaShi
 	 */
 	@Override
@@ -144,11 +172,12 @@ public class Flow implements Serializable {
 				+ "]";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-}//Flow
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getVariableMap() {
+		if (StringHelper.isNotEmpty(variables))
+			return (Map<String, Object>) JsonHelper.fromJson(variables, Map.class);
+		else
+			return Collections.emptyMap();
+	}
+
+}// Flow

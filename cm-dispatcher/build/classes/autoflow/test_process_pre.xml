@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 开发期测试专用流程定文件 -->
+<process id="Proc_Develop_Test_Pre" name="TestXmlforDeveloping">
+	<!-- 流程开始 -->
+	<start name="start">
+		<transition to="task01"/>
+	</start>
+	
+	<!-- step:第一个任务 -->
+	<task name="task01" refdubbo="OspDubboService"
+		refcomponent="TaskService01">
+		
+		
+		<transition to="fork01"/>
+	</task>
+	
+	<fork name="fork01">
+		<transition to="task02" />
+		<transition to="task03" />
+	</fork>
+	
+	<!-- step:第二个测试任务 -->
+	<task name="task02" refdubbo="OspDubboService"
+		refcomponent="TaskService02">
+		<transition to="join01"/>
+	</task>
+	
+	<!-- step:第三个测试任务 -->
+	<task name="task03" refdubbo="OspDubboService"
+		refcomponent="TaskService03">
+		<transition to="join01"/>
+	</task>
+		
+	<join name="join01">
+		<transition to="task04" />
+	</join>
+	
+	<!-- step:第四个测试任务 -->
+	<task name="task04" refdubbo="OspDubboService"
+		refcomponent="TaskService04">
+		<transition to="end"/><!-- 正常流程就直接结束 -->
+	</task>
+		
+	
+	
+	<!-- 流程结束 -->
+	<end name="end"/>
+</process>
