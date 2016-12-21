@@ -25,7 +25,7 @@ public class Execution implements Serializable {
 
 	/**
 	 * @Title: Execution.java
-	 * @Description:
+	 * @Description: 封装可执行参数，如引擎实例、process实例、flow实例、task实例
 	 * @Date:2016年12月8日 下午5:10:43
 	 * @Author:LeucotheaShi
 	 */
