@@ -230,9 +230,12 @@ public class AutoEngineImpl implements AutoEngine {
 
 		Execution execution = execute(process, args, flowId, flowName);
 
-		StartModel startModel = process.getModel().getStart();
+		if (process.getModel() != null) {
 
-		startModel.execute(execution);
+			StartModel startModel = process.getModel().getStart();
+
+			startModel.execute(execution);
+		}
 
 		this.getEventService().getHandler().handle(execution, EventEnum.FLOW_STARTED);
 		this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);
@@ -245,7 +248,7 @@ public class AutoEngineImpl implements AutoEngine {
 	/**
 	 * 
 	 * @Title: execute
-	 * @Description:
+	 * @Description: 创建flow对象、可执行对象
 	 * @param process
 	 * @param args
 	 * @param flowId
