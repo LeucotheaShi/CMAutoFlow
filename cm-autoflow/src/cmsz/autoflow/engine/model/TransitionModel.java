@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cmsz.autoflow.engine.core.Execution;
+import cmsz.autoflow.engine.handler.impl.CreateTaskHandler;
 
 /**
  * @ClassName:cmsz.autoflow.engine.model.TransitionModel
@@ -48,6 +49,12 @@ public class TransitionModel extends BaseModel implements Action {
 		if (!enabled) {
 			return;
 		} // if
+		if(target instanceof TaskModel){
+			CreateTaskHandler createTaskHandler = new CreateTaskHandler((TaskModel)target);
+			fire(createTaskHandler,execution);
+		}else{
+			target.execute(execution);
+		}
 
 	}// execute
 

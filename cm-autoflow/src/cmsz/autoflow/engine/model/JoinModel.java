@@ -7,6 +7,7 @@
 package cmsz.autoflow.engine.model;
 
 import cmsz.autoflow.engine.core.Execution;
+import cmsz.autoflow.engine.handler.impl.MergeBranchHandler;
 
 /**
  * @ClassName:cmsz.autoflow.engine.model.JoinModel
@@ -34,7 +35,9 @@ public class JoinModel extends NodeModel {
 	@Override
 	protected void exec(Execution execution) {
 		// TODO Auto-generated method stub
-
+		MergeBranchHandler handler=new MergeBranchHandler(this);
+		fire(handler, execution);
+		if(handler.isMerged()) runOutTransition(execution);
 	}
 
 }

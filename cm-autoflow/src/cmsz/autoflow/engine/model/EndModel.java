@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 import cmsz.autoflow.engine.core.Execution;
+import cmsz.autoflow.engine.handler.impl.EndProcessHandler;
 
 /**
  * @ClassName:cmsz.autoflow.engine.model.EndModel
@@ -50,7 +51,7 @@ public class EndModel extends NodeModel {
 	@Override
 	protected void exec(Execution execution) {
 		// TODO Auto-generated method stub
-
+		fire(new EndProcessHandler(), execution);
 	}
 
 }
