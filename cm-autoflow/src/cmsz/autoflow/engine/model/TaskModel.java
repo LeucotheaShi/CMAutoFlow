@@ -35,6 +35,7 @@ public class TaskModel extends NodeModel {
 	protected void exec(Execution execution) {
 		// TODO Auto-generated method stub
 		runOutTransition(execution);
+		
 	}
 
 }
