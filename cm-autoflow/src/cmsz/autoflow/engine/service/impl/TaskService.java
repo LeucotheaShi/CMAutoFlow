@@ -54,9 +54,11 @@ public class TaskService extends AccessService implements ITaskService {
 		task.setCreateTime(DateHelper.getTime());
 		task.setCurrentTimes(1);
 		task.setFinishTime(null);
+		
+		task.setId("Task_" + DateHelper.getDate(0) + "_" + SequenceHelper.getSequence());
+		task.setName(model.getName());
+		
 		task.setFlowId(execution.getFlow().getId());
-		//task.setId(execution.getTask().getId());
-		task.setId("TASK-" + DateHelper.getDate(0) + "-" + SequenceHelper.getSequence());
 
 		task.setProcessId(execution.getProcess().getId());
 
