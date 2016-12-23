@@ -31,14 +31,14 @@
 				<!-- 需要部署的流程定义文件 运行的业务不同，需要部署的流程定义文件也不同
 				咪咕充值业务 -->
 				<!-- <value>autoflow/clearing_migu.xml</value> -->
-                
+                <value>autoflow/test_process_pre.xml</value>
 			</list>
 		</property>
 	</bean>
 	
-	<!-- <bean id="scheduler" class="cmsz.autoflow.engine.schedule.PlanScheduler" init-method="start">
+	<bean id="scheduler" class="cmsz.autoflow.engine.schedule.PlanScheduler" init-method="start">
 		<property name="engine"	ref="engine" />
-	</bean> -->
+	</bean>
 	 
 		
 	

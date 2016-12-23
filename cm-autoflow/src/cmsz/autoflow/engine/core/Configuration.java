@@ -15,6 +15,7 @@ import cmsz.autoflow.engine.access.mybatis.MybatisSqlSessionFactory;
 import cmsz.autoflow.engine.constant.Constant;
 import cmsz.autoflow.engine.core.impl.AutoEngineImpl;
 import cmsz.autoflow.engine.core.impl.SimpleContext;
+import cmsz.autoflow.engine.handler.impl.BusiDateAppendHandler;
 import cmsz.autoflow.engine.service.IEventService;
 import cmsz.autoflow.engine.service.impl.EventService;
 import cmsz.autoflow.engine.service.impl.FlowService;
@@ -70,7 +71,8 @@ public class Configuration {
 		ServiceContext.put("cmsz.autoflow.engine.eventhandlers.EventService", EventService.class);
 
 		IEventService eventService = ServiceContext.find(EventService.class);
-
+		eventService.register(BusiDateAppendHandler.class);
+		
 		SqlSessionFactory sqlSessionFactory = ServiceContext.findByName(Constant.DEFAULT_SQLSESSIONFACTORY_ID,
 				SqlSessionFactory.class);
 

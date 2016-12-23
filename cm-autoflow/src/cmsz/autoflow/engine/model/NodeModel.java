@@ -203,7 +203,7 @@ public abstract class NodeModel extends BaseModel implements Action {
 	/**
 	 * @return the laucher
 	 */
-	public String getLaucher() {
+	public String getLauncher() {
 		return laucher;
 	}
 

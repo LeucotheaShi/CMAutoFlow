@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cmsz.autoflow.engine.constant.Constant;
+import cmsz.autoflow.engine.core.DelegateTask;
 import cmsz.autoflow.engine.helper.JsonHelper;
 import cmsz.autoflow.engine.helper.StringHelper;
 import cmsz.autoflow.engine.model.TaskModel;
@@ -21,7 +22,7 @@ import cmsz.autoflow.engine.model.TaskModel;
  * @Date: 2016��12��6��
  * @Author: LeucotheaShi
  */
-public class Task implements Serializable {
+public class Task implements Serializable,DelegateTask {
 
 	/**
 	 * @Title: Task.java
@@ -45,7 +46,29 @@ public class Task implements Serializable {
 	private String updateTime;
 	private String finishTime;
 	private TaskModel taskModel;
-
+	
+	/**
+	 * 流程实例名字
+	 */
+	private String flowName;
+	
+	public String getComponentId() {
+		return taskModel.getRefComponent();
+	}
+	
+	/* (non-Javadoc)
+	 * @see cmsz.autoflow.engine.DelegateTask#getDubboId()
+	 */
+	@Override
+	public String getDubboId() {
+		return taskModel.getRefDubbo();
+	}
+	
+	@Override
+	public String getFlowName() {
+		return flowName;
+	}
+	
 	/**
 	 * @return the taskModel
 	 */
@@ -255,6 +278,7 @@ public class Task implements Serializable {
 	public void setFinishTime(String finishTime) {
 		this.finishTime = finishTime;
 	}
+	
 
 	/**
 	 * @Title: toString
@@ -295,6 +319,14 @@ public class Task implements Serializable {
 		} else {
 			this.variables = JsonHelper.toJson(args);
 		}
+	}
+	
+	public void setUpdateVariables(Map<String, Object> updateVariables) {
+		this.updateVariables = updateVariables;
+	}
+
+	public Map<String, Object> getUpdateVariables() {
+		return this.updateVariables;
 	}
 
 }// Task

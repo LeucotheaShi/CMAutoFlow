@@ -11,6 +11,7 @@ import java.util.Map;
 
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
 import cmsz.autoflow.engine.entity.Flow;
+import cmsz.autoflow.engine.entity.FlowAppend;
 import cmsz.autoflow.engine.entity.Process;
 import cmsz.autoflow.engine.helper.DateHelper;
 import cmsz.autoflow.engine.helper.JsonHelper;
@@ -142,6 +143,11 @@ public class FlowService extends AccessService implements IFlowService {
 		saveFlow(flow);
 
 		return flow;
+	}
+	
+	@Override
+	public void updateFlowAppend(FlowAppend flowAppend){
+		getAccess().updateFlowAppend(flowAppend);
 	}
 
 }

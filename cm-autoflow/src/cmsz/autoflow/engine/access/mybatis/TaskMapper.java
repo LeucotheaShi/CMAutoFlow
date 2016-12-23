@@ -1,6 +1,7 @@
 package cmsz.autoflow.engine.access.mybatis;
 
 import cmsz.autoflow.engine.entity.Task;
+import cmsz.autoflow.engine.entity.TaskAppend;
 
 
 public interface TaskMapper {
@@ -17,5 +18,5 @@ public interface TaskMapper {
 	
 	public void updateTask(Task task);
 	
-	
+	public void updateTaskAppend(TaskAppend taskAppend);
 }

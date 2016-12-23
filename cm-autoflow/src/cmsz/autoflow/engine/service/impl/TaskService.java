@@ -9,6 +9,7 @@ package cmsz.autoflow.engine.service.impl;
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
 import cmsz.autoflow.engine.core.Execution;
 import cmsz.autoflow.engine.entity.Task;
+import cmsz.autoflow.engine.entity.TaskAppend;
 import cmsz.autoflow.engine.helper.DateHelper;
 import cmsz.autoflow.engine.helper.JsonHelper;
 import cmsz.autoflow.engine.model.TaskModel;
@@ -128,4 +129,8 @@ public class TaskService extends AccessService implements ITaskService {
 		this.getAccess().deleteTasksByFlowId(flowId);
 	}
 
+	@Override
+	public void updateTaskAppend(TaskAppend taskAppend){
+		this.getAccess().updateTaskAppend(taskAppend);
+	}
 }

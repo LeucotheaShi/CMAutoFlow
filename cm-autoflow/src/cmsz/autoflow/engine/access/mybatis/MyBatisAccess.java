@@ -16,9 +16,11 @@ import org.slf4j.LoggerFactory;
 
 import cmsz.autoflow.engine.access.DBAccess;
 import cmsz.autoflow.engine.entity.Flow;
+import cmsz.autoflow.engine.entity.FlowAppend;
 import cmsz.autoflow.engine.entity.Process;
 import cmsz.autoflow.engine.entity.Schedule;
 import cmsz.autoflow.engine.entity.Task;
+import cmsz.autoflow.engine.entity.TaskAppend;
 
 /**
  * @ClassName:cmsz.autoflow.engine.access.MyBatisAccess
@@ -232,6 +234,37 @@ public class MyBatisAccess implements DBAccess {
 		} finally {
 			sqlSession.close();
 		}
+	}
+	
+	@Override
+	public void updateFlowAppend(FlowAppend flowAppend) {
+
+		logger.debug("update flowAppend data : flowId =  " + flowAppend.getId());
+		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
+		try {
+			FlowMapper flowMapper = sqlSession.getMapper(FlowMapper.class);
+			flowMapper.updateFlowAppend(flowAppend);
+			sqlSession.commit();
+			logger.debug("update flowAppend : flowId= " + flowAppend.getId() + " success ");
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	@Override
+	public void updateTaskAppend(TaskAppend taskAppend) {
+		logger.debug("update taskAppend data : taskId = " + taskAppend.getId());
+		logger.debug("update taskAppend data : taskAppend= " + taskAppend);
+		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
+		try {
+			TaskMapper taskMapper = sqlSession.getMapper(TaskMapper.class);
+			taskMapper.updateTaskAppend(taskAppend);
+			sqlSession.commit();
+			logger.debug("update taskAppend : taskId=" + taskAppend.getId() + " success");
+		} finally {
+			sqlSession.close();
+		}
+
 	}
 
 }// MyBatisAccess

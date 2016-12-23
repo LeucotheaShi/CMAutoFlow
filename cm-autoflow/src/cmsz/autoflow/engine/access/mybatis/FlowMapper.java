@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import cmsz.autoflow.engine.entity.Flow;
+import cmsz.autoflow.engine.entity.FlowAppend;
 
 public interface FlowMapper {
 
@@ -14,5 +15,7 @@ public interface FlowMapper {
 	public void updateFlowStatus(Flow flow);
 
 	public List<Flow> getFlowSelective(Map<String, Object> paraMap);
+	
+	public void updateFlowAppend(FlowAppend flowAppend);
 
 }
