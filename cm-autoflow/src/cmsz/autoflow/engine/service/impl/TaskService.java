@@ -12,6 +12,7 @@ import cmsz.autoflow.engine.entity.Task;
 import cmsz.autoflow.engine.entity.TaskAppend;
 import cmsz.autoflow.engine.helper.DateHelper;
 import cmsz.autoflow.engine.helper.JsonHelper;
+import cmsz.autoflow.engine.helper.SequenceHelper;
 import cmsz.autoflow.engine.model.TaskModel;
 import cmsz.autoflow.engine.service.AccessService;
 import cmsz.autoflow.engine.service.ITaskService;
@@ -54,7 +55,8 @@ public class TaskService extends AccessService implements ITaskService {
 		task.setCurrentTimes(1);
 		task.setFinishTime(null);
 		task.setFlowId(execution.getFlow().getId());
-		task.setId(execution.getTask().getId());
+		//task.setId(execution.getTask().getId());
+		task.setId("TASK-" + DateHelper.getDate(0) + "-" + SequenceHelper.getSequence());
 
 		task.setProcessId(execution.getProcess().getId());
 
