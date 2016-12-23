@@ -54,10 +54,10 @@ public class TaskService extends AccessService implements ITaskService {
 		task.setCreateTime(DateHelper.getTime());
 		task.setCurrentTimes(1);
 		task.setFinishTime(null);
-
+		
 		task.setId("Task_" + DateHelper.getDate(0) + "_" + SequenceHelper.getSequence());
 		task.setName(model.getName());
-
+		
 		task.setFlowId(execution.getFlow().getId());
 
 		task.setProcessId(execution.getProcess().getId());
@@ -134,7 +134,7 @@ public class TaskService extends AccessService implements ITaskService {
 	}
 
 	@Override
-	public void updateTaskAppend(TaskAppend taskAppend) {
+	public void updateTaskAppend(TaskAppend taskAppend){
 		this.getAccess().updateTaskAppend(taskAppend);
 	}
 }
