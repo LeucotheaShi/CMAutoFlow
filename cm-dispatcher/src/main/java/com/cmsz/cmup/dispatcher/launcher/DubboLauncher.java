@@ -46,11 +46,11 @@ public class DubboLauncher implements Launcher {
 
 		ReturnResult ret = null;
 		String dubboId = "";
-		Map<String, String> comMap = new HashMap<>();
+		Map<String, Object> comMap = new HashMap<>();
 		try {
 			dubboId = dtask.getDubboId();
 			Map<String, Object> varMap = JsonHelper.fromJson(dtask.getVariables(), Map.class);
-			comMap.putAll((Map<String, String>) varMap.get("Common"));
+			comMap.putAll((Map<String, Object>) varMap.get("Common"));
 			varMap.remove("Common");
 			comMap.put(FrameConstant.SERVICENAME, dtask.getComponentId());
 
@@ -129,7 +129,7 @@ public class DubboLauncher implements Launcher {
 			tmap.put(Constant.ARGS_R_MESSAGE, message);
 		}
 		if (ret.getVariableMap() != null) {
-			Map<String, String> vMap = ret.getVariableMap();
+			Map<String, Object> vMap = ret.getVariableMap();
 			Map<String, Object> map = new HashMap<String, Object>();
 			for (String ke : vMap.keySet()) {
 				map.put(ke, vMap.get(ke));
