@@ -15,12 +15,12 @@ public class FileLinesDataUtil {
 	/**
 	 * 查找最后一行数据(代签名文件最后一行是签名数据，不是文件尾)
 	 * 
-	 * @param:Map<String, String>(将文件路径put到map中，且key为”localFilePath“)
+	 * @param:Map<String, Object>(将文件路径put到map中，且key为”localFilePath“)
 	 * @author: louiszhang
 	 * @throws Exception
 	 * @return String 最后一行数据
 	 */
-	public String getFinalLineData(Map<String, String> variableMap) throws Exception {
+	public String getFinalLineData(Map<String, Object> variableMap) throws Exception {
 		String endLine = "";
 		try {
 			endLine = getBackwardsLine(variableMap, 0);
@@ -35,11 +35,11 @@ public class FileLinesDataUtil {
 	 * 获得文件倒数第二行数据（即带签名文件文件尾）
 	 * 
 	 * @author: louiszhang
-	 * @param:Map<String, String>(将文件路径put到map中，且key为”localFilePath“)
+	 * @param:Map<String, Object>(将文件路径put到map中，且key为”localFilePath“)
 	 * @throws Exception
 	 * @return String 文件倒数第二行数据
 	 */
-	public String getPenultimateData(Map<String, String> variableMap) throws Exception {
+	public String getPenultimateData(Map<String, Object> variableMap) throws Exception {
 		String penulLine = "";
 		try {
 			String endLine = getFinalLineData(variableMap);
@@ -62,8 +62,8 @@ public class FileLinesDataUtil {
 	 * @param length
 	 * @return
 	 */
-	public String getBackwardsLine(Map<String, String> variableMap, long length) throws Exception {
-		String filePath = variableMap.get("localFilePath");
+	public String getBackwardsLine(Map<String, Object> variableMap, long length) throws Exception {
+		String filePath = variableMap.get("localFilePath").toString();
 		String line = "";
 		RandomAccessFile rf = null;
 		try {
@@ -103,13 +103,13 @@ public class FileLinesDataUtil {
 	/**
 	 * 检查文件是否含有回车换行(文件需要一行回车换行)
 	 * 
-	 * @param:Map<String, String>(将文件路径put到map中，且key为”localFilePath“)
+	 * @param:Map<String, Object>(将文件路径put到map中，且key为”localFilePath“)
 	 * @author: louiszhang
 	 * @throws Exception
 	 * @return boolean
 	 */
-	public boolean checkFileBlankLine(Map<String, String> variableMap) throws Exception {
-		String filePath = variableMap.get("localFilePath");
+	public boolean checkFileBlankLine(Map<String, Object> variableMap) throws Exception {
+		String filePath = variableMap.get("localFilePath").toString();
 		String line = "";
 		try (RandomAccessFile rf = new RandomAccessFile(filePath, "r");) {
 			rf.seek(rf.length() - 1);// 设置到此文件开头测量到的文件指针偏移量，在该位置发生下一个读取或写入操作。
