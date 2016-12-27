@@ -35,7 +35,11 @@ public class TaskService01 implements BaseInterface {
 	@Override
 	public ReturnResult doService(Map<String, Object> variableMap) throws Exception {
 		// TODO Auto-generated method stub
+
+		String myVar = (String) variableMap.get("myVar1");
+
 		System.out.println("\n\n\n\n-----------------------------------");
+		System.out.println("myVar1:" + myVar);
 		System.out.println(" TaskService01 is running successfully. ");
 
 		// variableMap不能丢，否则后面的task拿不到同一格式的map，会报错
