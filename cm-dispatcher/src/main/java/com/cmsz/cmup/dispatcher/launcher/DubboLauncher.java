@@ -8,7 +8,6 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.rpc.RpcException;
 import com.cmsz.cmup.commons.logging.alarm.AlarmLogHandler;
@@ -16,7 +15,7 @@ import com.cmsz.cmup.commons.logging.system.SystemLogHandler;
 import com.cmsz.cmup.commons.utils.SpringUtil;
 import com.cmsz.cmup.frame.constant.FrameConstant;
 import com.cmsz.cmup.frame.constant.Result;
-import com.cmsz.cmup.frame.dubbo.service.DubboService;
+import com.cmsz.cmup.frame.dubbo.service.LauncherService;
 import com.cmsz.cmup.frame.model.ReturnResult;
 
 import cmsz.autoflow.engine.constant.Constant;
@@ -32,7 +31,7 @@ import cmsz.autoflow.engine.helper.JsonHelper;
  * 
  */
 
-@Component("defaultDubboLauncher")
+// @Component("defaultDubboLauncher")
 public class DubboLauncher implements Launcher {
 	private static AlarmLogHandler alarmLogger = AlarmLogHandler.getLogger(DubboLauncher.class);
 	private static SystemLogHandler sysLogger = SystemLogHandler.getLogger(DubboLauncher.class);
@@ -67,9 +66,9 @@ public class DubboLauncher implements Launcher {
 				return Constant.State.ERROR;
 			}
 
-			DubboService dubboService = (DubboService) springUtil.getBean(dubboId);
+			LauncherService dubboService = (LauncherService) springUtil.getBean(dubboId);
 			try {
-				ret = dubboService.doDubboService(comMap);
+				ret = dubboService.doService(comMap);
 			} catch (NullPointerException e) {
 				String message = "执行默认DubboLauncher.dubboService时发生异常，可能是流程依赖的dubbo服务[" + dubboId + "]没有就绪,请检查";
 				alarmLogger.error(message, comMap, e);
