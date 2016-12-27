@@ -9,8 +9,7 @@
 		<typeAlias alias="Flow" type="cmsz.autoflow.engine.entity.Flow"/>
 		<typeAlias alias="Task" type="cmsz.autoflow.engine.entity.Task"/>
 		<typeAlias alias="Schedule" type="cmsz.autoflow.engine.entity.Schedule"/>
-		<typeAlias alias="FlowAppend" type="cmsz.autoflow.engine.entity.FlowAppend"/>
-		<typeAlias alias="TaskAppend" type="cmsz.autoflow.engine.entity.TaskAppend"/>
+		
 	</typeAliases>
 	
 	<mappers>
