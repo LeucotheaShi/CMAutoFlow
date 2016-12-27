@@ -34,7 +34,7 @@
 
 		<set>
 			<if test="status != null">
-				status= #{status}
+				 status= #{status}
 			</if>
 			<if test="finishTime != null">
 				, finishTime= #{finishTime}
@@ -62,17 +62,5 @@
 		AF_TASK WHERE flowId=#{flowId}
 	</delete>
 
-	<update id="updateTaskAppend" parameterType="TaskAppend">
-
-		UPDATE AF_TASK SET SettleDate=#{settleDate}, busiLine=#{busiLine},
-		province =#{province}
-		<if test="node != null">
-			,node=#{node}
-		</if>
-		<if test="message != null">
-			,message=#{message}
-		</if>
-		WHERE id=#{id}
-	</update>
 	
 </mapper>
