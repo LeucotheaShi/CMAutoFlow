@@ -98,5 +98,6 @@
 	<classpathentry kind="lib" path="/cm-lib/libs/zkclient-0.1.jar"/>
 	<classpathentry kind="lib" path="/cm-lib/libs/zookeeper-3.4.6.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/cm-autoflow"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/cm-application"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

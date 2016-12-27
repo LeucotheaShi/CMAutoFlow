@@ -7,7 +7,7 @@
 	</start>
 	
 	<!-- step:第一个任务 -->
-	<task name="task01" refdubbo="OspDubboService"
+	<task name="task01" refdubbo="ProDubboService"
 		refcomponent="TaskService01">
 		
 		
@@ -20,13 +20,13 @@
 	</fork>
 	
 	<!-- step:第二个测试任务 -->
-	<task name="task02" refdubbo="OspDubboService"
+	<task name="task02" refdubbo="ProDubboService"
 		refcomponent="TaskService02">
 		<transition to="join01"/>
 	</task>
 	
 	<!-- step:第三个测试任务 -->
-	<task name="task03" refdubbo="OspDubboService"
+	<task name="task03" refdubbo="ProDubboService"
 		refcomponent="TaskService03">
 		<transition to="join01"/>
 	</task>
@@ -36,7 +36,7 @@
 	</join>
 	
 	<!-- step:第四个测试任务 -->
-	<task name="task04" refdubbo="OspDubboService"
+	<task name="task04" refdubbo="ProDubboService"
 		refcomponent="TaskService04">
 		<transition to="end"/><!-- 正常流程就直接结束 -->
 	</task>
