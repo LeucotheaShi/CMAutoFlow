@@ -11,6 +11,7 @@
 	<task name="task01" refbean="LocalLauncher"
 		refcomponent="TaskService01"><!-- refbean 写的是LauncherService的具体实现 -->
 		<!-- field标签内的内容将会以k-v对的形式给到task，当做task的入口参数 -->
+		<field key="myVar1" value="My life is a straight line, turning only for you." />
 		<transition to="fork01"/>
 	</task>
 	
