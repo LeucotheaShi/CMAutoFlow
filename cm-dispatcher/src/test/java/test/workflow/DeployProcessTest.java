@@ -31,7 +31,7 @@ public class DeployProcessTest {
 	@Test
 	public void testProcessDeploy() {
 
-		String processFileName = "test_process_pre.xml";
+		String processFileName = "test_process.xml";
 		InputStream in = StreamHelper.openStream("autoflow/" + processFileName);
 		String result = engine.getProcessService().deploy(in);
 		System.out.println("流程[" + result + "]已部署成功！");

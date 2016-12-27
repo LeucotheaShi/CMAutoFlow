@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import cmsz.autoflow.engine.entity.Flow;
-import cmsz.autoflow.engine.entity.FlowAppend;
 import cmsz.autoflow.engine.entity.Process;
 
 /**
@@ -98,16 +97,5 @@ public interface IFlowService {
 	 * @Author:LeucotheaShi
 	 */
 	Flow createFlow(Process process, Map<String, Object> args, String flowId, String flowName);
-	
-	/**
-	 * 
-	 * @Title: updateFlowAppend
-	 * @Description: 更新一个工作流实例
-	 * @param flowAppend
-	 * @return void
-	 * @Date:2016年12月10日 下午8:01:41
-	 * @Author:MichaelZhenglihua
-	 */
-	void updateFlowAppend(FlowAppend flowAppend);
 
 }// IFlowService

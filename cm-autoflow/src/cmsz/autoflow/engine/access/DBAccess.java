@@ -9,11 +9,9 @@ package cmsz.autoflow.engine.access;
 import java.util.List;
 
 import cmsz.autoflow.engine.entity.Flow;
-import cmsz.autoflow.engine.entity.FlowAppend;
 import cmsz.autoflow.engine.entity.Process;
 import cmsz.autoflow.engine.entity.Schedule;
 import cmsz.autoflow.engine.entity.Task;
-import cmsz.autoflow.engine.entity.TaskAppend;
 
 /**
  * @ClassName:cmsz.autoflow.engine.access.DBAccess
@@ -105,8 +103,5 @@ public interface DBAccess {
 	public void deleteTasksByFlowId(String flowId);
 
 	public List<Schedule> getAllSchedule();
-	
-	public void updateFlowAppend(FlowAppend flowAppend);
-	
-	public void updateTaskAppend(TaskAppend taskAppend);
+
 }// DBAccess

@@ -8,7 +8,6 @@ package cmsz.autoflow.engine.service;
 
 import cmsz.autoflow.engine.core.Execution;
 import cmsz.autoflow.engine.entity.Task;
-import cmsz.autoflow.engine.entity.TaskAppend;
 import cmsz.autoflow.engine.model.TaskModel;
 
 /**
@@ -65,12 +64,5 @@ public interface ITaskService {
 	 * @param flowId
 	 */
 	public void deleteTasks(String flowId);
-	
-	/**
-	 * 更新流程任务
-	 * 
-	 * @param flowId
-	 */
-	public void updateTaskAppend(TaskAppend taskAppend);
 
 }// ITaskService

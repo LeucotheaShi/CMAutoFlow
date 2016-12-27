@@ -1,4 +1,4 @@
-package com.cmsz.cmup.frame.dubbo.service;
+package com.cmsz.cmup.dispatcher.service;
 
 import java.util.Map;
 
@@ -13,19 +13,20 @@ import com.cmsz.cmup.commons.utils.SpringUtil;
 import com.cmsz.cmup.frame.base.service.BaseInterface;
 import com.cmsz.cmup.frame.constant.FrameConstant;
 import com.cmsz.cmup.frame.constant.Result;
+import com.cmsz.cmup.frame.dubbo.service.LauncherService;
 import com.cmsz.cmup.frame.model.ReturnResult;
 
 /**
  * 子系统对外dubbo接口通用实现类 所有子系统对外提供的dubbo接口实现类需要继承此类，不需要自己添加和修改任何方法，
  * 只需实现自己的dubuo接口（同样不需要写任何代码），参考DubboService
  * 
- * @see com.cmsz.cmup.frame.dubbo.service.DubboService
+ * @see com.cmsz.cmup.frame.dubbo.service.LauncherService
  * @author JinChao
  * 
  * @date 2015年11月11日 上午10:03:31
  *
  */
-public class DubboServiceImpl implements DubboService {
+public class DubboServiceImpl implements LauncherService {
 	private static SystemLogHandler sysLogger = SystemLogHandler.getLogger(DubboServiceImpl.class);
 	private static AlarmLogHandler alarmLogger = AlarmLogHandler.getLogger(DubboServiceImpl.class);
 
@@ -39,7 +40,7 @@ public class DubboServiceImpl implements DubboService {
 	 * @see com.cmsz.cmup.frame.dubbo.service.BaseDubboService#doDubboService(java.util.Map)
 	 */
 	@Override
-	public ReturnResult doDubboService(Map<String, Object> variableMap) {
+	public ReturnResult doService(Map<String, Object> variableMap) {
 		sysLogger.debug("执行doDubboService方法");
 		if (variableMap == null || variableMap.isEmpty()) {
 			String message = "执行doDubboService方法出错，variableMap不能为空!";
