@@ -11,6 +11,7 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
+import cmsz.autoflow.engine.model.FieldModel;
 import cmsz.autoflow.engine.model.TaskModel;
 import cmsz.autoflow.engine.model.TransitionModel;
 
@@ -42,12 +43,17 @@ public class TaskModelParser {
 		taskModel.setRefDubbo(element.getAttribute(ConfigNameConstant.ATTR_REFDUBBO));
 		taskModel.setRefComponent(element.getAttribute(ConfigNameConstant.ATTR_COMPONENT));
 
+		// parse transition model
 		List<TransitionModel> transitionList = ChildListParser.getTransitionModelList(element);
 		for (TransitionModel transitionModel : transitionList) {
 			transitionModel.setSource(taskModel);
 		} // for
 
 		taskModel.getOutputs().addAll(transitionList);
+
+		// parse field model
+		List<FieldModel> fieldList = ChildListParser.getFieldModelList(element);
+		taskModel.setFieldModels(fieldList);
 
 		return taskModel;
 	}

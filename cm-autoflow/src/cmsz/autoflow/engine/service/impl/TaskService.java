@@ -6,12 +6,16 @@
  */
 package cmsz.autoflow.engine.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
 import cmsz.autoflow.engine.core.Execution;
 import cmsz.autoflow.engine.entity.Task;
 import cmsz.autoflow.engine.helper.DateHelper;
 import cmsz.autoflow.engine.helper.JsonHelper;
 import cmsz.autoflow.engine.helper.SequenceHelper;
+import cmsz.autoflow.engine.model.FieldModel;
 import cmsz.autoflow.engine.model.TaskModel;
 import cmsz.autoflow.engine.service.AccessService;
 import cmsz.autoflow.engine.service.ITaskService;
@@ -65,7 +69,19 @@ public class TaskService extends AccessService implements ITaskService {
 		task.setUpdateTime(DateHelper.getTime());
 
 		task.setTaskModel(model);
-		task.setVariables(JsonHelper.toJson(execution.getArgs()));
+
+		// get common map
+		Map<String, Object> userMap = execution.getArgs();
+		// set user map
+		List<FieldModel> fieldList = model.getFieldModels();
+		if (fieldList != null && !fieldList.isEmpty()) {
+			for (FieldModel field : fieldList) {
+				userMap.put(field.getKey(), field.getValue());
+			} // for
+		} // if
+
+		task.setVariables(JsonHelper.toJson(userMap));
+
 		task.setStatus(ConfigNameConstant.STATUS_ACTIVE);
 
 		this.saveTask(task);

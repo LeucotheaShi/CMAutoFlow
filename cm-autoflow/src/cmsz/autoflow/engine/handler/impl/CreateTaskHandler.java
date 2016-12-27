@@ -28,15 +28,20 @@ public class CreateTaskHandler implements IHandler {
 	@Override
 	public void handle(Execution execution) {
 		AutoEngine engine = execution.getEngine();
-		task = engine.task().getTask(execution.getFlow().getId(),
-				model.getName());
-		if (task != null)
-		{
+		task = engine.task().getTask(execution.getFlow().getId(), model.getName());
+		if (task != null) {
 			task.setTaskModel(model);
+
+			/*
+			 * // get common map Map<String, Object> userMap =
+			 * execution.getArgs(); // set user map List<FieldModel> fieldList =
+			 * model.getFieldModels(); if (fieldList != null &&
+			 * !fieldList.isEmpty()) { for (FieldModel field : fieldList) {
+			 * userMap.put(field.getKey(), field.getValue()); } // for } // if
+			 */
 			task.setVariables(JsonHelper.toJson(execution.getArgs()));
 			engine.task().updateTask(task);
-		}
-		else
+		} else
 			task = engine.task().createTask(model, execution);
 		execution.addTask(task);
 	}
