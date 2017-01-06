@@ -319,7 +319,7 @@ public class AutoEngineImpl implements AutoEngine {
 
 		Flow flow = this.getFlowService().getFlow(task.getFlowId());
 		Process process = this.getProcessService().getProcessById(flow.getProcessId());
-		Execution execution = new Execution(this, process, flow, args);
+		Execution execution = new Execution(this, process, flow, task.getVariableMap());
 		execution.setTask(task);
 
 		//this.getEventService().getHandler().handle(execution, EventEnum.TASK_COMPLETED);
@@ -343,7 +343,10 @@ public class AutoEngineImpl implements AutoEngine {
 			nodemodel.execute(execution);
 		} // if
 
-		this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);
+		//the statement below is related to specified business, using for updating settleDate,province,busLine.
+		//Overwrite it when you need.
+		/*this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);*/
+		
 		// where did it set tasks??
 		this.getThreadService().runTasks(execution.getTasks(), execution);
 

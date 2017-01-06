@@ -30,6 +30,7 @@
 	<import resource="spring-autoflow.xml"/>
 	<import resource="spring-mvc-controller.xml"/>
 	<import resource="spring-datasource.xml"/>
+	<import resource="spring-dubbo-customer.xml"/>
 
 	<!-- 采用注释的方式配置bean -->
 	<context:annotation-config />
