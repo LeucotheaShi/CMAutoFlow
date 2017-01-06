@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.cmsz.app.task.TaskService01;
+import com.cmsz.cmup.commons.utils.SpringUtil;
+
 import cmsz.autoflow.engine.access.DBAccess;
 import cmsz.autoflow.engine.access.mybatis.MyBatisAccess;
 import cmsz.autoflow.engine.core.AutoEngine;
@@ -37,6 +40,10 @@ public class EngineProcessTest {
 	@Qualifier("engine")
 	AutoEngine engine;
 
+	@Autowired
+	@Qualifier("springUtil")
+	private SpringUtil springUtil;
+
 	/**
 	 * 
 	 * @Description:
@@ -57,6 +64,15 @@ public class EngineProcessTest {
 	@Test
 	public void testLoadSpring() {
 		System.out.println("\n\n\n\nspring is load successfully!");
+
+		TaskService01 ts01 = (TaskService01) springUtil.getBean("TaskService01");
+		if (ts01 != null) {
+			System.out.println("\n\n\n\n***********************");
+			System.out.println("ts01 is not null.");
+		} else {
+			System.out.println("\n\n\n\n***********************");
+			System.out.println("ts01 is null.");
+		}
 
 	}// testLoadSpring
 

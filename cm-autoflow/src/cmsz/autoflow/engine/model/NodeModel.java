@@ -260,4 +260,19 @@ public abstract class NodeModel extends BaseModel implements Action {
 		this.fieldModels = fieldModels;
 	}
 
+	/**
+	 * @Title: toString
+	 * @Description:
+	 * @return
+	 * @Date:2016年12月23日 下午8:24:06
+	 * @Author:LeucotheaShi
+	 */
+	@Override
+	public String toString() {
+		return "NodeModel [inputs=" + inputs + ", outputs=" + outputs + ", inExceptions=" + inExceptions
+				+ ", outExceptions=" + outExceptions + ", fieldModels=" + fieldModels + ", refBean=" + refBean
+				+ ", refClass=" + refClass + ", refDubbo=" + refDubbo + ", refComponent=" + refComponent + ", laucher="
+				+ laucher + "]";
+	}
+
 }// NodeModel

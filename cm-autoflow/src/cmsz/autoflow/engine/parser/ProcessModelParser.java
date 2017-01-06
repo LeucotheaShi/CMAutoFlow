@@ -71,7 +71,6 @@ public class ProcessModelParser {
 
 						NodeModel childNodeModel = parseChildNode(node);
 						processModel.getNodes().add(childNodeModel);
-						System.out.println("**" + childNodeModel.getName());
 
 					} // if
 				} // for
@@ -85,8 +84,6 @@ public class ProcessModelParser {
 						for (NodeModel node2 : processModel.getNodes()) {
 							if (node2.getName().equals(to)) {
 								transition.setTarget(node2);
-								System.out.println(
-										"-----transition=" + transition.getName() + " ; targetNode=" + node2.getName());
 								node2.getInputs().add(transition);
 							} // if
 						} // for

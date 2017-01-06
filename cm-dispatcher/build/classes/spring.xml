@@ -24,6 +24,8 @@
 
 	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="com.cmsz.cmup" /> 
+	<context:component-scan base-package="com.cmsz.app.task" /> 
+	<context:component-scan base-package="com.cmsz.cmup.frame.dubbo.service" /> 
 	
 	<!-- 配置文件引入 -->
 	<import resource="spring-myBatis.xml"/>

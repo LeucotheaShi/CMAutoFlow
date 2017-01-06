@@ -36,11 +36,11 @@ public class StartProcessTest {
 		Map<String, Object> CommonMap = new HashMap<>();
 		Map<String, Object> variableMap = new HashMap<>();
 		CommonMap.put("settleDate", "20151011");
-		CommonMap.put("province", "100");
+		CommonMap.put("province", "571");
 		CommonMap.put("busiLine", "0064");
 		variableMap.put("Common", CommonMap);
 		System.out.println("启动流程.....");
-		Flow flow = engine.startInstanceById("Proc_miGuTest", variableMap);
+		Flow flow = engine.startInstanceById("Proc_Develop_Test", variableMap);
 
 		System.out.println("------------流程成功启动.." + ",流程状态:" + flow.getStatus() + ",流程实例id:" + flow.getId()
 				+ ",ProcessId:" + flow.getProcessId());

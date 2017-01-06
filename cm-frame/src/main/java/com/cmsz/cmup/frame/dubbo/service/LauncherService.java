@@ -12,7 +12,7 @@ import com.cmsz.cmup.frame.model.ReturnResult;
  * @date 2015年11月11日 上午9:58:45
  *
  */
-public interface DubboService {
+public interface LauncherService {
 
 	/**
 	 * 执行dubbo服务
@@ -21,5 +21,5 @@ public interface DubboService {
 	 *            参数map
 	 * @return ReturnResult 执行结果
 	 */
-	public ReturnResult doDubboService(Map<String, Object> variableMap);
+	public ReturnResult doService(Map<String, Object> variableMap);
 }

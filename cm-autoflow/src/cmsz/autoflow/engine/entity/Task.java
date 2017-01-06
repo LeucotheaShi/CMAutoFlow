@@ -22,7 +22,7 @@ import cmsz.autoflow.engine.model.TaskModel;
  * @Date: 2016��12��6��
  * @Author: LeucotheaShi
  */
-public class Task implements Serializable,DelegateTask {
+public class Task implements Serializable, DelegateTask {
 
 	/**
 	 * @Title: Task.java
@@ -46,29 +46,31 @@ public class Task implements Serializable,DelegateTask {
 	private String updateTime;
 	private String finishTime;
 	private TaskModel taskModel;
-	
+
 	/**
 	 * 流程实例名字
 	 */
 	private String flowName;
-	
+
 	public String getComponentId() {
 		return taskModel.getRefComponent();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see cmsz.autoflow.engine.DelegateTask#getDubboId()
 	 */
 	@Override
 	public String getDubboId() {
 		return taskModel.getRefDubbo();
 	}
-	
+
 	@Override
 	public String getFlowName() {
 		return flowName;
 	}
-	
+
 	/**
 	 * @return the taskModel
 	 */
@@ -278,7 +280,6 @@ public class Task implements Serializable,DelegateTask {
 	public void setFinishTime(String finishTime) {
 		this.finishTime = finishTime;
 	}
-	
 
 	/**
 	 * @Title: toString
@@ -320,13 +321,26 @@ public class Task implements Serializable,DelegateTask {
 			this.variables = JsonHelper.toJson(args);
 		}
 	}
-	
+
 	public void setUpdateVariables(Map<String, Object> updateVariables) {
 		this.updateVariables = updateVariables;
 	}
 
 	public Map<String, Object> getUpdateVariables() {
 		return this.updateVariables;
+	}
+
+	/**
+	 * @Title: getRefBean
+	 * @Description:
+	 * @return
+	 * @Date:2016年12月23日 下午8:51:06
+	 * @Author:LeucotheaShi
+	 */
+	@Override
+	public String getRefBean() {
+		// TODO Auto-generated method stub
+		return taskModel.getRefBean();
 	}
 
 }// Task

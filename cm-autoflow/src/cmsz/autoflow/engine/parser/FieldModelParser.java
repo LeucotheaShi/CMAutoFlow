@@ -6,8 +6,11 @@
  */
 package cmsz.autoflow.engine.parser;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
+import cmsz.autoflow.engine.constant.ConfigNameConstant;
 import cmsz.autoflow.engine.model.FieldModel;
 
 /**
@@ -17,6 +20,7 @@ import cmsz.autoflow.engine.model.FieldModel;
  * @Author: LeucotheaShi
  */
 public class FieldModelParser {
+	private static Logger logger = LoggerFactory.getLogger(FieldModelParser.class);
 
 	/**
 	 * @Title: parse
@@ -29,7 +33,14 @@ public class FieldModelParser {
 
 	public static FieldModel parse(Element element) {
 		// TODO Auto-generated method stub
-		return null;
+
+		FieldModel fieldModel = new FieldModel();
+		fieldModel.setKey(element.getAttribute(ConfigNameConstant.ATTR_KEY));
+		fieldModel.setValue(element.getAttribute(ConfigNameConstant.ATTR_VALUE));
+
+		logger.debug("parsed transitionModel : (" + fieldModel.getKey() + "," + fieldModel.getValue() + ")");
+
+		return fieldModel;
 	}
 
 }

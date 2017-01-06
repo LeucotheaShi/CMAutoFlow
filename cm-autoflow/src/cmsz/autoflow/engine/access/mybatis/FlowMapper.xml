@@ -77,10 +77,6 @@
 		</where>
 	</select>
 	
-	<update id="updateFlowAppend" parameterType="FlowAppend">
-		UPDATE AF_FLOW SET
-		settleDate=#{settleDate}, busiLine=#{busiLine}, province=#{province}
-		WHERE id=#{id}
-	</update>
+	
 
 </mapper>

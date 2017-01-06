@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
+import cmsz.autoflow.engine.constant.Constant;
 import cmsz.autoflow.engine.entity.Flow;
-import cmsz.autoflow.engine.entity.FlowAppend;
 import cmsz.autoflow.engine.entity.Process;
 import cmsz.autoflow.engine.helper.DateHelper;
 import cmsz.autoflow.engine.helper.JsonHelper;
@@ -68,7 +68,12 @@ public class FlowService extends AccessService implements IFlowService {
 	public void update(String flowId, String state) {
 		// TODO Auto-generated method stub
 		Flow flow = getFlow(flowId);
-		flow.setStatus(state);
+		if (StringHelper.isNotEmpty(state)) {
+			flow.setStatus(state);
+			if (!(state.equals(Constant.State.START)) && !(state.equals(Constant.State.RUNNING))) {
+				flow.setFinishTime(DateHelper.getTime());
+			}
+		}
 		getAccess().updateFlow(flow);
 
 	}
@@ -143,11 +148,6 @@ public class FlowService extends AccessService implements IFlowService {
 		saveFlow(flow);
 
 		return flow;
-	}
-	
-	@Override
-	public void updateFlowAppend(FlowAppend flowAppend){
-		getAccess().updateFlowAppend(flowAppend);
 	}
 
 }

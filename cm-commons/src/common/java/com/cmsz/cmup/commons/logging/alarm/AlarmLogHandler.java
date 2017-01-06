@@ -95,6 +95,18 @@ public class AlarmLogHandler extends BaseLogger {
 		logger.error(tmp);
 	}
 
+	public void error(String msgContext) {
+		LogLocation logLocation = new LogLocation(new Throwable(), getClassname());
+		String tmp = convAlarmMessage(LOG_LEVEL_ALARM_ERROR, msgContext, logLocation.getLineNumber(), null);
+		logger.error(tmp);
+	}
+
+	public void error(String msgContext, Throwable throwable) {
+		LogLocation logLocation = new LogLocation(new Throwable(), getClassname());
+		String tmp = convAlarmMessage(LOG_LEVEL_ALARM_ERROR, msgContext, logLocation.getLineNumber(), null);
+		logger.error(tmp);
+	}
+
 	/**
 	 * 
 	 * @param msgContext

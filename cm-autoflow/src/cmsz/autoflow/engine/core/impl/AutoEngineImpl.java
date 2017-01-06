@@ -237,8 +237,8 @@ public class AutoEngineImpl implements AutoEngine {
 			startModel.execute(execution);
 		}
 
-		//this.getEventService().getHandler().handle(execution, EventEnum.FLOW_STARTED);
-		//this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);
+		this.getEventService().getHandler().handle(execution, EventEnum.FLOW_STARTED);
+		this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);
 
 		this.getThreadService().runTasks(execution.getTasks(), execution);
 
@@ -322,7 +322,7 @@ public class AutoEngineImpl implements AutoEngine {
 		Execution execution = new Execution(this, process, flow, task.getVariableMap());
 		execution.setTask(task);
 
-		//this.getEventService().getHandler().handle(execution, EventEnum.TASK_COMPLETED);
+		this.getEventService().getHandler().handle(execution, EventEnum.TASK_COMPLETED);
 
 		// 若返回的结果不是成功的，则该流程失败
 		if (!ConfigNameConstant.Status.SUCCESS.equals(state) && !ConfigNameConstant.Status.RUNNING.equals(state)) {
