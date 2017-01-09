@@ -2,7 +2,7 @@
 <configuration debug="false">
 	<contextName>UPAY</contextName>
 	<property resource="config.properties" />
-	<property name="log.base" value="F://auto_flow_log"/>
+	<property name="log.base" value="E://auto_flow_log"/>
 	<property name="instance.id" value="dispatcher"/>
 <!-- 系统运行日志记录文件begin -->
 	<appender name="SYSTEM_APPENDER_ROOT" class="ch.qos.logback.core.rolling.RollingFileAppender">

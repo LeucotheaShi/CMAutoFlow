@@ -367,7 +367,10 @@ public class AutoEngineImpl implements AutoEngine {
 			}
 		} // if
 
-		this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);
+		//the statement below is related to specified business, using for updating settleDate,province,busLine.
+		//Overwrite it when you need.
+		/*this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);*/
+		
 		// where did it set tasks??
 		this.getThreadService().runTasks(execution.getTasks(), execution);
 
