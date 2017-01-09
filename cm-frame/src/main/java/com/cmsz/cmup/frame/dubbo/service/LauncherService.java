@@ -21,5 +21,5 @@ public interface LauncherService {
 	 *            参数map
 	 * @return ReturnResult 执行结果
 	 */
-	public ReturnResult doService(Map<String, Object> variableMap);
+	public ReturnResult doService(Map<String, Object> variableMap) throws Exception;
 }

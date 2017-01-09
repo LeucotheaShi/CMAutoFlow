@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import cmsz.autoflow.engine.access.DBAccess;
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
+import cmsz.autoflow.engine.constant.Constant;
 import cmsz.autoflow.engine.constant.EventEnum;
 import cmsz.autoflow.engine.core.AutoEngine;
 import cmsz.autoflow.engine.core.Configuration;
@@ -234,7 +235,14 @@ public class AutoEngineImpl implements AutoEngine {
 
 			StartModel startModel = process.getModel().getStart();
 
-			startModel.execute(execution);
+			try {
+				startModel.execute(execution);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				logger.error("startModel执行错误");
+				return null;
+			}
 		}
 
 		this.getEventService().getHandler().handle(execution, EventEnum.FLOW_STARTED);
@@ -288,12 +296,13 @@ public class AutoEngineImpl implements AutoEngine {
 	 * @Description:
 	 * @param id
 	 * @param state
-	 * @param args
+	 * @param args:获取的是task的updateVaribs
 	 * @return
 	 * @Date:2016年12月12日 上午11:53:56
 	 * @Author:LeucotheaShi
 	 */
 	@Override
+	// synchronized
 	public Task complete(String id, String state, Map<String, Object> args) {
 		// TODO Auto-generated method stub
 
@@ -311,6 +320,7 @@ public class AutoEngineImpl implements AutoEngine {
 
 		task.setFinishTime(DateHelper.getTime());
 		task.setStatus(state);
+		task.setCurrentTimes(Integer.parseInt(args.get(Constant.CURRENTTIMES).toString()));
 		this.getTaskService().updateTask(task);
 
 		if (args != null) {
@@ -326,21 +336,35 @@ public class AutoEngineImpl implements AutoEngine {
 
 		// 若返回的结果不是成功的，则该流程失败
 		if (!ConfigNameConstant.Status.SUCCESS.equals(state) && !ConfigNameConstant.Status.RUNNING.equals(state)) {
-			logger.error(
-					"the state {} is not Constant.State.Success or Constant.state.RUNNING, the flow failed.  task:{}",
-					state, task);
-			flow().update(task.getFlowId(), ConfigNameConstant.Status.FAILED);
-			return task;
+
+			// 走异常分支
+			if (ConfigNameConstant.Status.EXCEPTIONBRANCH.equals(state)) {
+				Task exptask = this.doExceptionBranch(execution, args);
+				return exptask;
+			} // if
+			else {
+				logger.error(
+						"the state {} is not Constant.State.Success or Constant.state.RUNNING, the flow failed.  task:{}",
+						state, task);
+				flow().update(task.getFlowId(), ConfigNameConstant.Status.FAILED);
+				return task;
+			}
 		} // if
 
-		// success
 		ProcessModel processModel = process.getModel();
 
 		// why not next??
 		if (processModel != null) {
 			NodeModel nodemodel = processModel.getNode(task.getName());
 			task.setTaskModel((TaskModel) nodemodel);
-			nodemodel.execute(execution);
+			try {
+				nodemodel.execute(execution);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				logger.error("nodemodel执行错误");
+				return null;
+			}
 		} // if
 
 		this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);
@@ -384,7 +408,15 @@ public class AutoEngineImpl implements AutoEngine {
 		ProcessModel processModel = process.getModel();
 		if (processModel != null) {
 			StartModel startModel = processModel.getStart();
-			startModel.execute(execution);
+			try {
+				startModel.execute(execution);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
+				logger.error("startModel执行错误");
+				return null;
+			}
 		} // if
 
 		this.getThreadService().runTasks(execution.getTasks(), execution);
@@ -431,6 +463,53 @@ public class AutoEngineImpl implements AutoEngine {
 
 		return task;
 	}
+
+	/**
+	 * 
+	 * @Title: doExceptionBranch
+	 * @Description:走异常分支
+	 * @param task
+	 * @param args
+	 * @return
+	 * @return：Task
+	 * @Date:2016年12月28日 下午3:20:25
+	 * @Author:LeucotheaShi
+	 */
+	private Task doExceptionBranch(Execution execution, Map<String, Object> args) {
+
+		if (args == null || args.isEmpty()) {
+			logger.error("doExceptionBranch方法出错，args不能为空");
+			return null;
+		} // if
+
+		String exceptionBranch = args.get(ConfigNameConstant.Status.EXCEPTIONBRANCH).toString();
+
+		ProcessModel processModel = execution.getProcess().getModel();
+
+		Task task = execution.getTask();
+
+		// why not next??
+		if (processModel != null && exceptionBranch != null) {
+			NodeModel nodemodel = processModel.getNode(task.getName());
+			task.setTaskModel((TaskModel) nodemodel);
+			// 走exceptionBranch对应的异常分支路线
+			// 此处createtask时在execution 的tasks中添加了task
+			try {
+				nodemodel.runOutException(execution, exceptionBranch);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				logger.error("nodemodel 执行 runOutException 出错");
+				return null;
+			}
+		} // if
+
+		this.getEventService().getHandler().handle(execution, EventEnum.TASK_STARTED);
+		// where did it set tasks??
+		this.getThreadService().runTasks(execution.getTasks(), execution);
+
+		return null;
+	}// doExceptionBranch
 
 	/**
 	 * @return the config

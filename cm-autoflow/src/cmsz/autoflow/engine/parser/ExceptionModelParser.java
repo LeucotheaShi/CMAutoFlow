@@ -8,6 +8,7 @@ package cmsz.autoflow.engine.parser;
 
 import org.w3c.dom.Element;
 
+import cmsz.autoflow.engine.constant.ConfigNameConstant;
 import cmsz.autoflow.engine.model.ExceptionModel;
 
 /**
@@ -29,7 +30,12 @@ public class ExceptionModelParser {
 
 	public static ExceptionModel parse(Element element) {
 		// TODO Auto-generated method stub
-		return null;
+
+		ExceptionModel exceptionModel = new ExceptionModel();
+		exceptionModel.setType(element.getAttribute(ConfigNameConstant.ATTR_TYPE));
+		exceptionModel.setTo(element.getAttribute(ConfigNameConstant.ATTR_TO));
+
+		return exceptionModel;
 	}
 
 }

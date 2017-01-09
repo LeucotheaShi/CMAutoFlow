@@ -48,7 +48,7 @@ public class LocalServiceImpl implements LauncherService {
 	 * @Author:LeucotheaShi
 	 */
 	@Override
-	public ReturnResult doService(Map<String, Object> variableMap) {
+	public ReturnResult doService(Map<String, Object> variableMap) throws Exception {
 		sysLogger.debug("执行doLocalService方法");
 		if (variableMap == null || variableMap.isEmpty()) {
 			String message = "执行doLocalService方法出错，variableMap不能为空!";
@@ -78,6 +78,9 @@ public class LocalServiceImpl implements LauncherService {
 			returnResult = new ReturnResult(Result.ERROR, message);
 			alarmLogger.error(message, variableMap, e);
 			sysLogger.error(message, variableMap, e);
+
+			// 抛出异常，在上层处理
+			throw e;
 		} catch (ClassCastException e) {
 			StringBuilder messageBuilder = new StringBuilder("执行框架的doLocalService方法出错，转换bean为BaseInterface类型时出错，bean[");
 			messageBuilder.append(serviceName);
@@ -86,11 +89,15 @@ public class LocalServiceImpl implements LauncherService {
 			returnResult = new ReturnResult(Result.ERROR, message);
 			alarmLogger.error(message, variableMap, e);
 			sysLogger.error(message, variableMap, e);
+			// 抛出异常，在上层处理
+			throw e;
 		} catch (Exception e) {
 			String message = "执行组件的doService方法时捕获到异常:" + e.getMessage();
 			returnResult = new ReturnResult(Result.ERROR, message);
 			alarmLogger.error(message, variableMap, e);
 			sysLogger.error(message, variableMap, e);
+			// 抛出异常，在上层处理
+			throw e;
 		}
 		sysLogger.debug("执行doLocalService完毕");
 		return returnResult;

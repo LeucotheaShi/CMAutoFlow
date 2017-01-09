@@ -11,6 +11,7 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
+import cmsz.autoflow.engine.model.ExceptionModel;
 import cmsz.autoflow.engine.model.FieldModel;
 import cmsz.autoflow.engine.model.TaskModel;
 import cmsz.autoflow.engine.model.TransitionModel;
@@ -42,6 +43,12 @@ public class TaskModelParser {
 		taskModel.setRefClass(element.getAttribute(ConfigNameConstant.ATTR_REFCLASS));
 		taskModel.setRefDubbo(element.getAttribute(ConfigNameConstant.ATTR_REFDUBBO));
 		taskModel.setRefComponent(element.getAttribute(ConfigNameConstant.ATTR_COMPONENT));
+		String maxTimesStr = element.getAttribute(ConfigNameConstant.ATTR_MAXTIMES);
+		if (maxTimesStr == null || maxTimesStr.isEmpty()) {
+			taskModel.setMaxTimes(99);
+		} else {
+			taskModel.setMaxTimes(Integer.parseInt(maxTimesStr));
+		}
 
 		// parse transition model
 		List<TransitionModel> transitionList = ChildListParser.getTransitionModelList(element);
@@ -54,6 +61,13 @@ public class TaskModelParser {
 		// parse field model
 		List<FieldModel> fieldList = ChildListParser.getFieldModelList(element);
 		taskModel.setFieldModels(fieldList);
+
+		// parse Exception Model
+		List<ExceptionModel> exceptionList = ChildListParser.getExceptionModelList(element);
+		for (ExceptionModel exceptionModel : exceptionList) {
+			exceptionModel.setSource(taskModel);
+		} // for
+		taskModel.getOutExceptions().addAll(exceptionList);
 
 		return taskModel;
 	}

@@ -37,7 +37,7 @@ public class TaskService03 implements BaseInterface {
 		// TODO Auto-generated method stub
 
 		Thread.currentThread();
-		Thread.sleep(8000);
+		Thread.sleep(2000);
 
 		System.out.println("\n\n\n\n-----------------------------------");
 		System.out.println(" TaskService03 is running successfully. ");

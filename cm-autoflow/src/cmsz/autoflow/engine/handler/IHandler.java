@@ -16,6 +16,6 @@ import cmsz.autoflow.engine.core.Execution;
  */
 public interface IHandler {
 
-	public void handle(Execution execution);
+	public void handle(Execution execution) throws Exception;
 
 }// IHandler

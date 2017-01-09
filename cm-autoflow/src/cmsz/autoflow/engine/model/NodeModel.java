@@ -41,9 +41,9 @@ public abstract class NodeModel extends BaseModel implements Action {
 	private String refComponent;
 	private String laucher;
 
-	protected abstract void exec(Execution execution);
+	protected abstract void exec(Execution execution) throws Exception;
 
-	public void execute(Execution execution) {
+	public void execute(Execution execution) throws Exception {
 		exec(execution);
 	}
 
@@ -52,16 +52,37 @@ public abstract class NodeModel extends BaseModel implements Action {
 	 * @Title: runOutTransition
 	 * @Description:run out this node's output transitions
 	 * @param execution
+	 * @throws Exception
 	 * @return：void
 	 * @Date:2016年12月15日 下午2:28:53
 	 * @Author:LeucotheaShi
 	 */
-	protected void runOutTransition(Execution execution) {
+	protected void runOutTransition(Execution execution) throws Exception {
 		for (TransitionModel transitionModel : getOutputs()) {
 			transitionModel.setEnabled(true);
 			transitionModel.execute(execution);
 		} // for
 	}// runOutTransition
+
+	/**
+	 * 
+	 * @Title: runOutException
+	 * @Description:传入异常分支的名称，后面决定走哪个异常分支
+	 * @param execution
+	 * @throws Exception
+	 * @return：void
+	 * @Date:2016年12月29日 上午9:34:07
+	 * @Author:LeucotheaShi
+	 */
+	public void runOutException(Execution execution, String exceptionBranch) throws Exception {
+		for (ExceptionModel exception : getOutExceptions()) {
+			if (exception.getTo().equals(exceptionBranch)) {
+				exception.setEnabled(true);
+				exception.execute(execution);
+			} // if
+		} // for
+
+	}// runOutException
 
 	/**
 	 * 

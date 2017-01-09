@@ -14,6 +14,12 @@ public interface Constant {
 	// 默认sqlSessionFactory的id
 	public static final String DEFAULT_SQLSESSIONFACTORY_ID = "AutoFlowSqlSessionFactory";
 
+	public static final String CURRENTTIMES = "CurrentTimes";
+
+	public static final String MAXTIMES = "MaxTimes";
+
+	public static final int DEFAULT_MAXTIMES = 99;
+
 	// 流程或任务状态
 	public static class State {
 		public static final String SUCCESS = "Success";
@@ -25,6 +31,8 @@ public interface Constant {
 		public static final String FAILED = "Failed";
 		public static final String ERROR = "Error";
 		public static final String EXCEPTION = "Exception";
+		public static final String REDO = "Redo";
+		public static final String EXCEPTIONBRANCH = "ExceptionBranch";
 
 	}
 }

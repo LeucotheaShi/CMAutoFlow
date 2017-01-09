@@ -39,20 +39,21 @@ public class TransitionModel extends BaseModel implements Action {
 	 * @Title: execute
 	 * @Description:
 	 * @param execution
+	 * @throws Exception
 	 * @Date:2016年12月8日 下午5:35:42
 	 * @Author:LeucotheaShi
 	 */
 
-	public void execute(Execution execution) {
+	public void execute(Execution execution) throws Exception {
 		// TODO Auto-generated method stub
 
 		if (!enabled) {
 			return;
 		} // if
-		if(target instanceof TaskModel){
-			CreateTaskHandler createTaskHandler = new CreateTaskHandler((TaskModel)target);
-			fire(createTaskHandler,execution);
-		}else{
+		if (target instanceof TaskModel) {
+			CreateTaskHandler createTaskHandler = new CreateTaskHandler((TaskModel) target);
+			fire(createTaskHandler, execution);
+		} else {
 			target.execute(execution);
 		}
 

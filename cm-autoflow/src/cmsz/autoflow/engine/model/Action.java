@@ -16,6 +16,6 @@ import cmsz.autoflow.engine.core.Execution;
  */
 public interface Action {
 
-	public void execute(Execution execution);
+	public void execute(Execution execution) throws Exception;
 
 }// Action

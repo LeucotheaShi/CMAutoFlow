@@ -20,6 +20,7 @@ import org.w3c.dom.NodeList;
 
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
 import cmsz.autoflow.engine.helper.XmlHelper;
+import cmsz.autoflow.engine.model.ExceptionModel;
 import cmsz.autoflow.engine.model.NodeModel;
 import cmsz.autoflow.engine.model.ProcessModel;
 import cmsz.autoflow.engine.model.TransitionModel;
@@ -85,6 +86,20 @@ public class ProcessModelParser {
 							if (node2.getName().equals(to)) {
 								transition.setTarget(node2);
 								node2.getInputs().add(transition);
+							} // if
+						} // for
+					} // for
+				} // for
+
+				// set each exception node's target
+				for (NodeModel node1 : processModel.getNodes()) {
+					List<ExceptionModel> exceptions = node1.getOutExceptions();
+					for (ExceptionModel exception : exceptions) {
+						String to = exception.getTo();
+						for (NodeModel node3 : processModel.getNodes()) {
+							if (node3.getName().equals(to)) {
+								exception.setTarget(node3);
+								node3.getInExceptions().add(exception);
 							} // if
 						} // for
 					} // for

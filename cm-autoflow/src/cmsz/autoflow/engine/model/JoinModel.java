@@ -29,15 +29,29 @@ public class JoinModel extends NodeModel {
 	 * @Title: exec
 	 * @Description:
 	 * @param execution
+	 * @throws Exception
 	 * @Date:2016年12月8日 下午6:14:23
 	 * @Author:LeucotheaShi
 	 */
 	@Override
-	protected void exec(Execution execution) {
+	synchronized protected void exec(Execution execution) throws Exception {
 		// TODO Auto-generated method stub
-		MergeBranchHandler handler=new MergeBranchHandler(this);
-		fire(handler, execution);
-		if(handler.isMerged()) runOutTransition(execution);
+		MergeBranchHandler handler = new MergeBranchHandler(this);
+
+		System.out.println("%%%%%% handler hash " + handler.hashCode());
+		System.out.println("%%%%%% handler hash " + this.hashCode());
+
+		fire(handler, execution);// call handle method
+
+		// if (handler.isMerged()) {
+		// // handler.setIsRun(true);
+		// runOutTransition(execution);
+		// }
+		if (handler.isMerged() && !handler.isRun()) {
+			handler.setIsRun(true);
+			runOutTransition(execution);
+		}
+
 	}
 
 }

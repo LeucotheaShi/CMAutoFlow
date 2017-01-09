@@ -44,11 +44,12 @@ public class StartModel extends NodeModel {
 	 * @Title: exec
 	 * @Description:
 	 * @param execution
+	 * @throws Exception
 	 * @Date:2016年12月8日 下午6:06:26
 	 * @Author:LeucotheaShi
 	 */
 	@Override
-	protected void exec(Execution execution) {
+	protected void exec(Execution execution) throws Exception {
 		// TODO Auto-generated method stub
 		runOutTransition(execution);
 	}

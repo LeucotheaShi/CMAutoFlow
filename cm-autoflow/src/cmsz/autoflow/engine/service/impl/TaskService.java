@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import cmsz.autoflow.engine.constant.ConfigNameConstant;
+import cmsz.autoflow.engine.constant.Constant;
 import cmsz.autoflow.engine.core.Execution;
 import cmsz.autoflow.engine.entity.Task;
 import cmsz.autoflow.engine.helper.DateHelper;
@@ -55,7 +56,16 @@ public class TaskService extends AccessService implements ITaskService {
 		// TODO Auto-generated method stub
 		Task task = new Task();
 		task.setCreateTime(DateHelper.getTime());
+		// 第一次创建
 		task.setCurrentTimes(1);
+
+		// set max times
+		int maxTimes = model.getMaxTimes();
+		if (maxTimes == 0) {
+			maxTimes = Constant.DEFAULT_MAXTIMES;
+		}
+		task.setMaxTimes(model.getMaxTimes());
+
 		task.setFinishTime(null);
 
 		task.setId("Task_" + DateHelper.getDate(0) + "_" + SequenceHelper.getSequence());

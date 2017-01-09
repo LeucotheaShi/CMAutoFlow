@@ -7,6 +7,7 @@
 package com.cmsz.cmup.dispatcher.launcher;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -29,6 +30,7 @@ import cmsz.autoflow.engine.constant.Constant;
 import cmsz.autoflow.engine.core.DelegateTask;
 import cmsz.autoflow.engine.core.Launcher;
 import cmsz.autoflow.engine.helper.JsonHelper;
+import cmsz.autoflow.engine.model.ExceptionModel;
 
 /**
  * @ClassName:com.cmsz.cmup.dispatcher.launcher.LocalLauncher
@@ -67,6 +69,7 @@ public class LocalLauncher implements Launcher {
 			sysLogger.error(message);
 			return Constant.State.ERROR;
 		}
+
 		ReturnResult ret = null;
 		try {
 
@@ -76,7 +79,7 @@ public class LocalLauncher implements Launcher {
 			Map<String, Object> comMap = (Map<String, Object>) varMap.get("Common");
 			varMap.remove("Common");
 			for (String key : varMap.keySet()) {
-				comMap.put(key, (String) varMap.get(key));
+				comMap.put(key, varMap.get(key));
 			}
 			comMap.put(FrameConstant.SERVICENAME, dtask.getComponentId());
 
@@ -85,13 +88,35 @@ public class LocalLauncher implements Launcher {
 			comMap.put("flowName", dtask.getFlowName());
 			comMap.put("taskId", dtask.getId());
 			comMap.put("taskName", dtask.getName());
+
+			dtask.putUpdateVariables(Constant.State.EXCEPTIONBRANCH, null);
+
 			try {
+				dtask.addRunTimes(1);
+				dtask.putUpdateVariables(Constant.CURRENTTIMES, dtask.getCurrentTimes());
 				ret = launcherService.doService(comMap);
-			} catch (NullPointerException e) {
-				String message = "执行默认LocalLauncher.LocalService时发生异常，可能是流程依赖的Local服务[" + launcherServiceId
-						+ "]没有就绪,请检查";
-				alarmLogger.error(message, e);
-				sysLogger.error(message, e);
+
+			} catch (Exception e) {
+				// 接收所有的exception，然后再分类处理
+				// 获取异常列表
+				List<ExceptionModel> exceptionList = dtask.getOutExceptions();
+				if (exceptionList != null && !exceptionList.isEmpty()) {
+					for (ExceptionModel exceptionModel : exceptionList) {
+
+						if ((Class.forName(exceptionModel.getType()).isInstance(e))) {
+
+							dtask.putUpdateVariables(Constant.State.EXCEPTIONBRANCH, exceptionModel.getTo());
+
+							String message = "执行默认LocalLauncher.LocalService时发生异常，可能是流程依赖的Local服务[" + launcherServiceId
+									+ "]没有就绪,请检查";
+							alarmLogger.error(message, e);
+							sysLogger.error(message, e);
+							return Constant.State.EXCEPTIONBRANCH;
+						} // if
+
+					} // for
+				} // if
+
 				return Constant.State.ERROR;
 			}
 		} catch (NoSuchBeanDefinitionException e) {

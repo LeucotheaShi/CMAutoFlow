@@ -7,6 +7,7 @@
 package cmsz.autoflow.engine.model;
 
 import cmsz.autoflow.engine.core.Execution;
+import cmsz.autoflow.engine.handler.impl.CreateTaskHandler;
 
 /**
  * @ClassName:cmsz.autoflow.engine.model.ExceptionModel
@@ -14,7 +15,7 @@ import cmsz.autoflow.engine.core.Execution;
  * @Date: 2016年12月9日
  * @Author: LeucotheaShi
  */
-public class ExceptionModel extends NodeModel {
+public class ExceptionModel extends BaseModel implements Action {
 
 	/**
 	 * @Title: ExceptionModel.java
@@ -31,16 +32,25 @@ public class ExceptionModel extends NodeModel {
 	private String type;
 
 	/**
-	 * @Title: exec
+	 * 
+	 * @Title: execute
 	 * @Description:
 	 * @param execution
-	 * @Date:2016年12月9日 上午10:00:30
+	 * @throws Exception
+	 * @Date:2016年12月29日 上午10:07:43
 	 * @Author:LeucotheaShi
 	 */
-	@Override
-	protected void exec(Execution execution) {
+	public void execute(Execution execution) throws Exception {
 		// TODO Auto-generated method stub
-
+		if (!enabled) {
+			return;
+		} // if
+		if (target instanceof TaskModel) {
+			CreateTaskHandler createTaskHandler = new CreateTaskHandler((TaskModel) target);
+			fire(createTaskHandler, execution);
+		} else {
+			target.execute(execution);
+		}
 	}
 
 	/**

@@ -6,12 +6,11 @@
 		<transition to="task01"/>
 	</start>
 	
-	
 	<!-- step:第一个任务 -->
-	<task name="task01" refbean="LocalLauncher"
-		refcomponent="TaskService01"><!-- refbean 写的是LauncherService的具体实现 -->
+	<task name="task01" refdubbo="OspDubboService"
+		refcomponent="TaskService01">
 		<!-- field标签内的内容将会以k-v对的形式给到task，当做task的入口参数 -->
-		<field key="myVar1" value="My life is a straight line, turning only for you." />
+		<field key="serviceID" value="serviceID-20160729-719931" />
 		<transition to="fork01"/>
 	</task>
 	
@@ -21,13 +20,13 @@
 	</fork>
 	
 	<!-- step:第二个测试任务 -->
-	<task name="task02" refbean="LocalLauncher"
+	<task name="task02" refdubbo="OspDubboService"
 		refcomponent="TaskService02">
 		<transition to="join01"/>
 	</task>
 	
 	<!-- step:第三个测试任务 -->
-	<task name="task03" refbean="LocalLauncher"
+	<task name="task03" refdubbo="OspDubboService"
 		refcomponent="TaskService03">
 		<transition to="join01"/>
 	</task>
@@ -37,8 +36,8 @@
 	</join>
 	
 	<!-- step:第四个测试任务 -->
-	<task name="task04" refbean="LocalLauncher"
-		refcomponent="TaskService04" maxtimes="3">
+	<task name="task04" refdubbo="OspDubboService"
+		refcomponent="TaskService04">
 		<transition to="end"/><!-- 正常流程就直接结束 -->
 		<!-- 若抛出IOException类型的异常，则跳转到task06 -->
 		<!-- 该异常会流传至后面的task -->
@@ -46,17 +45,16 @@
 		<exception  type="BusinessException" to="task06"/>
 		<!-- 若抛出BusinessException类型的异常，则跳转到task05 -->
 		<exception type="IOException"  to="task05"/>
-		
 	</task>
 		
 	<!-- step:第五个测试任务 -->
-	<task name="task05" refbean="LocalLauncher"
+	<task name="task05" refdubbo="OspDubboService"
 		refcomponent="TaskService05">
 		<transition to="task01"/>
 	</task>
 	
 	<!-- step:第六个测试任务 -->
-	<task name="task06" refbean="LocalLauncher"
+	<task name="task06" refdubbo="OspDubboService"
 		refcomponent="TaskService06">
 		<transition to="end"/>
 	</task>	

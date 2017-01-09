@@ -25,6 +25,7 @@ public interface ConfigNameConstant {
 	public static final String ATTR_VALUE = "value";
 	public static final String ATTR_EXCEPTION = "exception";
 	public static final String ATTR_TYPE = "type";
+	public static final String ATTR_MAXTIMES = "maxtimes";
 
 	// 使用dubbo remote调用时使用
 	public static final String ATTR_REFDUBBO = "refdubbo";
@@ -52,6 +53,7 @@ public interface ConfigNameConstant {
 		public static final String FAILED = "Failed";
 		public static final String ERROR = "Error";
 		public static final String EXCEPTION = "Exception";
+		public static final String EXCEPTIONBRANCH = "ExceptionBranch";
 
 	}
 

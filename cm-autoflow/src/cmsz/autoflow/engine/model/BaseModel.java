@@ -39,7 +39,7 @@ public class BaseModel implements Serializable {
 	 * @Date:2016年12月8日 下午5:22:37
 	 * @Author:LeucotheaShi
 	 */
-	protected void fire(IHandler handler, Execution execution) {
+	protected void fire(IHandler handler, Execution execution) throws Exception {
 		handler.handle(execution);
 	}
 

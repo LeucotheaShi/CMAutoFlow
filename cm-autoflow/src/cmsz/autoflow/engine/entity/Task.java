@@ -8,12 +8,14 @@ package cmsz.autoflow.engine.entity;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import cmsz.autoflow.engine.constant.Constant;
 import cmsz.autoflow.engine.core.DelegateTask;
 import cmsz.autoflow.engine.helper.JsonHelper;
 import cmsz.autoflow.engine.helper.StringHelper;
+import cmsz.autoflow.engine.model.ExceptionModel;
 import cmsz.autoflow.engine.model.TaskModel;
 
 /**
@@ -46,6 +48,17 @@ public class Task implements Serializable, DelegateTask {
 	private String updateTime;
 	private String finishTime;
 	private TaskModel taskModel;
+
+	/**
+	 * 
+	 * @Description:
+	 * @Date:2016年12月28日 上午10:26:14
+	 * @Author:LeucotheaShi
+	 */
+	public Task() {
+		// TODO Auto-generated constructor stub
+		// this.maxTimes = this.taskModel.getMaxTimes();
+	}
 
 	/**
 	 * 流程实例名字
@@ -91,6 +104,7 @@ public class Task implements Serializable, DelegateTask {
 	 */
 	public String getId() {
 		return id;
+
 	}
 
 	/**
@@ -341,6 +355,63 @@ public class Task implements Serializable, DelegateTask {
 	public String getRefBean() {
 		// TODO Auto-generated method stub
 		return taskModel.getRefBean();
+	}
+
+	/**
+	 * @Title: getOutExceptions
+	 * @Description:
+	 * @return
+	 * @Date:2016年12月28日 上午9:31:42
+	 * @Author:LeucotheaShi
+	 */
+	@Override
+	public List<ExceptionModel> getOutExceptions() {
+		// TODO Auto-generated method stub
+		return taskModel.getOutExceptions();
+	}
+
+	/**
+	 * @Title: getInExceptions
+	 * @Description:
+	 * @return
+	 * @Date:2016年12月28日 上午9:32:24
+	 * @Author:LeucotheaShi
+	 */
+	@Override
+	public List<ExceptionModel> getInExceptions() {
+		// TODO Auto-generated method stub
+		return taskModel.getInExceptions();
+	}
+
+	/**
+	 * @Title: putUpdateVariables
+	 * @Description:在UpdateVariables变量中添加k-v
+	 * @param key
+	 * @param value
+	 * @Date:2016年12月28日 下午2:19:58
+	 * @Author:LeucotheaShi
+	 */
+	@Override
+	public void putUpdateVariables(String key, Object value) {
+		// TODO Auto-generated method stub
+		if (this.updateVariables == null) {
+			this.updateVariables = new HashMap<String, Object>();
+		}
+		this.getUpdateVariables().put(key, value);
+	}
+
+	/**
+	 * @Title: addRunTimes
+	 * @Description:
+	 * @param times
+	 * @Date:2016年12月28日 下午2:38:01
+	 * @Author:LeucotheaShi
+	 */
+	@Override
+	public void addRunTimes(int times) {
+		// TODO Auto-generated method stub
+		this.currentTimes += this.currentTimes + times;
+
 	}
 
 }// Task
